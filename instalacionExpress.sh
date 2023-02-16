@@ -28,19 +28,19 @@ sudo echo "Hecho!"
 
 # Instalación de ROS
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-sudo apt install curl
+sudo apt -y install curl
 curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
 sudo apt update
-sudo apt install ros-noetic-desktop-full
+sudo apt -y install ros-noetic-desktop-full
 echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
-sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
-sudo apt install python3-rosdep
+sudo apt -y install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+sudo apt -y install python3-rosdep
 sudo rosdep init
 rosdep update
 
 # Instalación de VScode
-sudo snap install --classic code
+sudo snap -y install --classic code
 
 # Instalación de kitty 
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
@@ -49,23 +49,23 @@ curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main" > /etc/apt/sources.list.d/ros-latest.list'
 wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
 sudo apt-get update
-sudo apt-get install python3-catkin-tools
+sudo apt-get -y install python3-catkin-tools
 
 # Instalación de Git
 sudo apt update
-sudo apt install git
+sudo apt -y install git
 git --version
 
 # Instalación de CopyQ
 sudo add-apt-repository ppa:hluk/copyq
 sudo apt update
-sudo apt install copyq
+sudo apt -y install copyq
 
 # Instalación de Tree
-sudo apt install tree
+sudo apt -y install tree
 
 # Instalación de Locate 
-sudo apt install locate
+sudo apt -y install locate
 
 # Alternativas de Python
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
@@ -85,7 +85,7 @@ echo " " >> ~/.bashrc
 echo "force_color_prompt=yes" >> ~/.bashrc
 
 #Instalación Xclip para manejar el clipboard en el terminal
-sudo apt install xclip
+sudo apt -y install xclip
 
 # Instalación de NodeJS y Node Red
 curl -sL https://rpm.nodesource.com/setup_14.x | sudo bash --
