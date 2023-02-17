@@ -19,7 +19,6 @@ echo " - Locate"
 echo " - Alternativas de Python"
 echo " - Modificación aliases Bashrc"
 echo " - Xclip"
-echo " - Instalación de NodeJS y Node Red"
 echo " - Creación llave SSH para Github"
 
 echo "Se requiere privilegios de administrador"
@@ -73,7 +72,7 @@ echo "************************* INSTALACIÓN DE GIT FINALIZADA *****************
 
 # Instalación de CopyQ
 echo "************************* INICIANDO INSTALACIÓN DE COPYQ *************************"
-sudo add-apt-repository ppa:hluk/copyq
+sudo add-apt-repository --yes ppa:hluk/copyq
 sudo apt update
 sudo apt -y install copyq
 echo "************************* INSTALACIÓN DE COPYQ FINALIZADA *************************"
@@ -113,6 +112,7 @@ echo "alias gitf=\"git fetch origin; git status\"" >> ~/.bashrc
 echo " " >> ~/.bashrc
 echo "force_color_prompt=yes" >> ~/.bashrc
 
+source ~/.bashrc
 
 #Instalación Xclip para manejar el clipboard en el terminal
 echo "************************* INICIANDO INSTALACIÓN DE XCLIP *************************"
@@ -120,21 +120,10 @@ sudo apt -y install xclip
 echo "************************* INSTALACIÓN DE XCLIP FINALIZADA *************************"
 
 
-# Instalación de NodeJS y Node Red
-echo "************************* INICIANDO INSTALACIÓN DE NODE-RED *************************"
-curl -sL https://rpm.nodesource.com/setup_14.x | sudo bash --
-sudo yum install -y nodejs
-node -v
-npm -v
-sudo npm install -g --unsafe-perm node-red
-npm install -g --unsafe-perm node-red-admin
-echo "************************* INSTALACIÓN DE NODE-RED FINALIZADA *************************"
-
-
 #Llave ssh Github
 echo "************************* CREANDO LLAVE SSH GITHUB *************************"
 ssh-keygen -f ~/.ssh/id_rsa -t ed25519 -C "cvalenciaa@unal.edu.co" -N ''
 cat ~/.ssh/id_rsa.pub | xclip
 
-echo "Llave SSH copiada al portapapeles, no olvides pegarla en https://github.com/settings/keys !"
+echo "Llave SSH copiada al portapapeles, no olvides pegarla en https://github.com/settings/keys usando el botón del medio!"
 echo "Fin del programa!"
