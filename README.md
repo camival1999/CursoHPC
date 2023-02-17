@@ -8,9 +8,9 @@ En este repositorio se guarda el trabajo de la semana 2, mostrando por un lado l
 <br>
 NOTA: Navegar a la ubicación del script y correr mediante el comando:
 
-> `sudo ./instalacionExpress.sh` 
+> `./instalacionExpress.sh` 
 
-Si bien el `sudo` externo es redundante con el contenido del script, en práctica ha evitado que bash pida autenticarse nuevamente de forma aleatoria.
+Anteriormente se corría con el comando `sudo ./instalacionExpress.sh`  evitando que el bash pida autenticarse nuevamente de forma aleatoria en alguinas ocasiones, sin embargo por algún motivo esto causa que al editar el bashrc, se modifique el .bashrc del usuario root y por lo tanto no se guarden los cambios.
 
 La lista de programas que instala y tareas realizadas es:
 - ROS Noetic instalación completa
