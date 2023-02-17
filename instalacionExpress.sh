@@ -50,7 +50,6 @@ echo "************************* INSTALACIÓN DE VISUAL ESTUDIO FINALIZADA ******
 
 # Instalación de kitty 
 echo "************************* INICIANDO INSTALACIÓN DE KITTY *************************"
-#curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 sudo apt install kitty -y
 kitty --version
 echo "************************* INSTALACIÓN DE KITTY FINALIZADA *************************"
