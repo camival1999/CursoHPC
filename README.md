@@ -3,18 +3,25 @@
 ### C.C. 1016107945
 
 #### **Descripción**
-En este repositorio se guarda el trabajo de la semana 2, mostrando por un lado la creación de un repositorio remoto como se puede apreciar por los logs, así como un script (***instalcionExpress.sh***) que permite automatizar la tarea de instalar una serie de programas que requiero en Ubuntu y normalmente debo instalar manualmente cada uno varias veces en diferentes equipos con **Ubuntu 20.04**.
+En este repositorio se guarda el trabajo de la semana 2, mostrando por un lado la creación de un repositorio remoto como se puede apreciar por los logs, así como un script (***instalacionExpress.sh***) que permite automatizar la tarea de instalar una serie de programas que requiero en Ubuntu y normalmente debo instalar manualmente cada uno varias veces en diferentes equipos con **Ubuntu 20.04**.
+
+<br>
+NOTA: Navegar a la ubicación del script y correr mediante el comando:
+
+> `sudo ./instalacionExpress.sh` 
+
+Si bien el `sudo` externo es redundante con el contenido del script, en práctica ha evitado que bash pida autenticarse nuevamente de forma aleatoria.
 
 La lista de programas que instala y tareas realizadas es:
-- ROS Noetic 
+- ROS Noetic instalación completa
 - Visual Studio Code
-- Kitty
+- Kitty y configura como terminal predeterminado
 - Catkin
 - Git
 - CopyQ
 - Tree
 - Locate
 - Xclip
-- Alternativas de Python
+- Configuración de alternativas de Python
 - Modificación de Aliases en el archivo ~./bashrc
 - Creación de llave SSH para conectar git con Github

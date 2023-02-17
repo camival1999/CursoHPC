@@ -51,7 +51,6 @@ echo "************************* INSTALACIÓN DE VISUAL ESTUDIO FINALIZADA ******
 echo "************************* INICIANDO INSTALACIÓN DE KITTY *************************"
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 sudo apt install kitty -y
-sudo update-alternatives --set x-terminal-emulator /usr/bin/kitty
 echo "************************* INSTALACIÓN DE KITTY FINALIZADA *************************"
 
 
@@ -116,13 +115,15 @@ echo "force_color_prompt=yes" >> ~/.bashrc
 
 source ~/.bashrc
 
-#Instalación Xclip para manejar el clipboard en el terminal
+# Instalación Xclip para manejar el clipboard en el terminal
 echo "************************* INICIANDO INSTALACIÓN DE XCLIP *************************"
 sudo apt -y install xclip
 echo "************************* INSTALACIÓN DE XCLIP FINALIZADA *************************"
 
+# Cambio de terminal predeterminado
+sudo update-alternatives --set x-terminal-emulator /usr/bin/kitty
 
-#Llave ssh Github
+# Llave ssh Github
 echo "************************* CREANDO LLAVE SSH GITHUB *************************"
 ssh-keygen -f ~/.ssh/id_rsa -t ed25519 -C "cvalenciaa@unal.edu.co" -N ''
 cat ~/.ssh/id_rsa.pub | xclip
