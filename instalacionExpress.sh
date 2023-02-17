@@ -25,26 +25,6 @@ echo "Se requiere privilegios de administrador"
 echo " "
 sudo echo "Hecho!"
 
-# Modificación de Bashrc
-echo "************************* MODIFICACION BASHRC EN CURSO *************************"
-echo " ">> ~/.bashrc
-echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
-echo " ">> ~/.bashrc
-echo "# Custom Aliases" >> ~/.bashrc
-echo "# BASH" >> ~/.bashrc
-echo "alias eb=\"gedit ~/.bashrc\"" >> ~/.bashrc
-echo "alias sb=\"source ~/.bashrc\"" >> ~/.bashrc
-echo " " >> ~/.bashrc
-echo "# System"  >> ~/.bashrc
-echo "alias update=\"sudo apt update\"" >> ~/.bashrc
-echo "alias shutoff=\"(sleep 5 && shutdown now) &\"" >> ~/.bashrc
-echo " " >> ~/.bashrc
-echo "# Git" >> ~/.bashrc
-echo "alias gitf=\"git fetch origin; git status\"" >> ~/.bashrc
-echo " " >> ~/.bashrc
-sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' ~/.bashrc
-source ~/.bashrc
-
 # Instalación de ROS
 echo "************************* INICIANDO INSTALACIÓN DE ROS *************************"
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
@@ -56,7 +36,6 @@ sudo apt -y install python3-rosdep python3-rosinstall python3-rosinstall-generat
 sudo apt -y install python3-rosdep
 sudo rosdep init
 sudo rosdep update
-rosversion -d
 echo "************************* INSTALACIÓN DE ROS FINALIZADA *************************"
 
 
@@ -135,4 +114,27 @@ ssh-keygen -f ~/.ssh/id_rsa -t ed25519 -C "cvalenciaa@unal.edu.co" -N ''
 cat ~/.ssh/id_rsa.pub | xclip
 
 echo "Llave SSH copiada al portapapeles, no olvides pegarla en https://github.com/settings/keys usando el botón del medio!"
+
+# Modificación de Bashrc
+echo "************************* MODIFICACION BASHRC EN CURSO *************************"
+echo " ">> ~/.bashrc
+echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+echo " ">> ~/.bashrc
+echo "# Custom Aliases" >> ~/.bashrc
+echo "# BASH" >> ~/.bashrc
+echo "alias eb=\"gedit ~/.bashrc\"" >> ~/.bashrc
+echo "alias sb=\"source ~/.bashrc\"" >> ~/.bashrc
+echo " " >> ~/.bashrc
+echo "# System"  >> ~/.bashrc
+echo "alias update=\"sudo apt update\"" >> ~/.bashrc
+echo "alias shutoff=\"(sleep 5 && shutdown now) &\"" >> ~/.bashrc
+echo " " >> ~/.bashrc
+echo "# Git" >> ~/.bashrc
+echo "alias gitf=\"git fetch origin; git status\"" >> ~/.bashrc
+echo " " >> ~/.bashrc
+sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' ~/.bashrc
+source ~/.bashrc
+
+rosversion -d
+
 echo "Fin del programa!"
