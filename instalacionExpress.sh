@@ -50,7 +50,7 @@ echo "************************* INSTALACIÓN DE VISUAL ESTUDIO FINALIZADA ******
 
 # Instalación de kitty 
 echo "************************* INICIANDO INSTALACIÓN DE KITTY *************************"
-curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+#curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 sudo apt install kitty -y
 kitty --version
 echo "************************* INSTALACIÓN DE KITTY FINALIZADA *************************"
@@ -119,22 +119,23 @@ echo "Llave SSH copiada al portapapeles, no olvides pegarla en https://github.co
 
 # Modificación de Bashrc
 echo "************************* MODIFICACION BASHRC EN CURSO *************************"
-echo " ">> ~/.bashrc
-echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
-echo " ">> ~/.bashrc
-echo "# Custom Aliases" >> ~/.bashrc
-echo "# BASH" >> ~/.bashrc
-echo "alias eb=\"gedit ~/.bashrc\"" >> ~/.bashrc
-echo "alias sb=\"source ~/.bashrc\"" >> ~/.bashrc
-echo " " >> ~/.bashrc
-echo "# System"  >> ~/.bashrc
-echo "alias update=\"sudo apt update\"" >> ~/.bashrc
-echo "alias shutoff=\"(sleep 5 && shutdown now) &\"" >> ~/.bashrc
-echo " " >> ~/.bashrc
-echo "# Git" >> ~/.bashrc
-echo "alias gitf=\"git fetch origin; git status\"" >> ~/.bashrc
-echo " " >> ~/.bashrc
-sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' ~/.bashrc
+sudo -u $USER echo " ">> ~/.bashrc
+sudo -u $USER echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+sudo -u $USER echo " ">> ~/.bashrc
+sudo -u $USER echo "# Custom Aliases" >> ~/.bashrc
+sudo -u $USER echo "# BASH" >> ~/.bashrc
+sudo -u $USER echo "alias eb=\"gedit ~/.bashrc\"" >> ~/.bashrc
+sudo -u $USER echo "alias sb=\"source ~/.bashrc\"" >> ~/.bashrc
+sudo -u $USER echo " " >> ~/.bashrc
+sudo -u $USER echo "# System"  >> ~/.bashrc
+sudo -u $USER echo "alias update=\"sudo apt update\"" >> ~/.bashrc
+sudo -u $USER echo "alias shutoff=\"(sleep 5 && shutdown now) &\"" >> ~/.bashrc
+sudo -u $USER echo " " >> ~/.bashrc
+sudo -u $USER echo "# Git" >> ~/.bashrc
+sudo -u $USER echo "alias gitf=\"git fetch origin; git status\"" >> ~/.bashrc
+sudo -u $USER echo " " >> ~/.bashrc
+sudo -u $USER sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' ~/.bashrc
+sudo -u $USER tail ~/.bashrc
 source ~/.bashrc
 
 rosversion -d
