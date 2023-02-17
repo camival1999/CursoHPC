@@ -23,6 +23,7 @@ echo " - Creación llave SSH para Github"
 
 echo "Se requiere privilegios de administrador"
 echo " "
+sudo su
 sudo echo "Hecho!"
 
 # Instalación de ROS
@@ -129,3 +130,4 @@ cat ~/.ssh/id_rsa.pub | xclip
 
 echo "Llave SSH copiada al portapapeles, no olvides pegarla en https://github.com/settings/keys usando el botón del medio!"
 echo "Fin del programa!"
+exit
