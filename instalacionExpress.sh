@@ -23,14 +23,13 @@ echo " - Creación llave SSH para Github"
 
 echo "Se requiere privilegios de administrador"
 echo " "
-sudo su
 sudo echo "Hecho!"
 
 # Instalación de ROS
 echo "************************* INICIANDO INSTALACIÓN DE ROS *************************"
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 sudo apt -y install curl
-curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+sudo curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
 sudo apt update
 sudo apt -y install ros-noetic-desktop-full
 echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
@@ -130,4 +129,3 @@ cat ~/.ssh/id_rsa.pub | xclip
 
 echo "Llave SSH copiada al portapapeles, no olvides pegarla en https://github.com/settings/keys usando el botón del medio!"
 echo "Fin del programa!"
-exit
