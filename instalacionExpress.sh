@@ -37,19 +37,21 @@ source ~/.bashrc
 sudo apt -y install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
 sudo apt -y install python3-rosdep
 sudo rosdep init
-rosdep update
+sudo rosdep update
 echo "************************* INSTALACIÓN DE ROS FINALIZADA *************************"
 
 
 # Instalación de VScode
 echo "************************* INICIANDO INSTALACIÓN DE VISUAL ESTUDIO *************************"
-sudo snap -y install --classic code
+sudo snap install --classic code
 echo "************************* INSTALACIÓN DE VISUAL ESTUDIO FINALIZADA *************************"
 
 
 # Instalación de kitty 
 echo "************************* INICIANDO INSTALACIÓN DE KITTY *************************"
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+sudo apt install kitty -y
+sudo update-alternatives --set x-terminal-emulator /usr/bin/kitty
 echo "************************* INSTALACIÓN DE KITTY FINALIZADA *************************"
 
 
