@@ -25,6 +25,26 @@ echo "Se requiere privilegios de administrador"
 echo " "
 sudo echo "Hecho!"
 
+# Modificación de Bashrc
+echo "************************* MODIFICACION BASHRC EN CURSO *************************"
+echo " ">> ~/.bashrc
+echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+echo " ">> ~/.bashrc
+echo "# Custom Aliases" >> ~/.bashrc
+echo "# BASH" >> ~/.bashrc
+echo "alias eb=\"gedit ~/.bashrc\"" >> ~/.bashrc
+echo "alias sb=\"source ~/.bashrc\"" >> ~/.bashrc
+echo " " >> ~/.bashrc
+echo "# System"  >> ~/.bashrc
+echo "alias update=\"sudo apt update\"" >> ~/.bashrc
+echo "alias shutoff=\"(sleep 5 && shutdown now) &\"" >> ~/.bashrc
+echo " " >> ~/.bashrc
+echo "# Git" >> ~/.bashrc
+echo "alias gitf=\"git fetch origin; git status\"" >> ~/.bashrc
+echo " " >> ~/.bashrc
+sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' ~/.bashrc
+source ~/.bashrc
+
 # Instalación de ROS
 echo "************************* INICIANDO INSTALACIÓN DE ROS *************************"
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
@@ -32,18 +52,18 @@ sudo apt -y install curl
 sudo curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
 sudo apt update
 sudo apt -y install ros-noetic-desktop-full
-echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
-source ~/.bashrc
 sudo apt -y install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
 sudo apt -y install python3-rosdep
 sudo rosdep init
 sudo rosdep update
+rosversion -d
 echo "************************* INSTALACIÓN DE ROS FINALIZADA *************************"
 
 
 # Instalación de VScode
 echo "************************* INICIANDO INSTALACIÓN DE VISUAL ESTUDIO *************************"
 sudo snap install --classic code
+code -v
 echo "************************* INSTALACIÓN DE VISUAL ESTUDIO FINALIZADA *************************"
 
 
@@ -51,6 +71,7 @@ echo "************************* INSTALACIÓN DE VISUAL ESTUDIO FINALIZADA ******
 echo "************************* INICIANDO INSTALACIÓN DE KITTY *************************"
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 sudo apt install kitty -y
+kitty --version
 echo "************************* INSTALACIÓN DE KITTY FINALIZADA *************************"
 
 
@@ -60,6 +81,7 @@ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main"
 wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
 sudo apt-get update
 sudo apt-get -y install python3-catkin-tools
+catkin --version
 echo "************************* INSTALACIÓN DE CATKIN FINALIZADA *************************"
 
 
@@ -76,18 +98,21 @@ echo "************************* INICIANDO INSTALACIÓN DE COPYQ ****************
 sudo add-apt-repository --yes ppa:hluk/copyq
 sudo apt update
 sudo apt -y install copyq
+copyq --version
 echo "************************* INSTALACIÓN DE COPYQ FINALIZADA *************************"
 
 
 # Instalación de Tree
 echo "************************* INICIANDO INSTALACIÓN DE TREE *************************"
 sudo apt -y install tree
+tree
 echo "************************* INSTALACIÓN DE TREE FINALIZADA *************************"
 
 
 # Instalación de Locate 
 echo "************************* INICIANDO INSTALACIÓN DE LOCATE *************************"
 sudo apt -y install locate
+locate --version
 echo "************************* INSTALACIÓN DE LOCATE FINALIZADA *************************"
 
 # Alternativas de Python
@@ -95,25 +120,6 @@ echo "************************* INSTALANDO ALTERNATIVAS PYTHON *****************
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 2
 
-
-# Modificación de Bashrc
-echo "************************* MODIFICACION BASHRC EN CURSO *************************"
-echo " ">> ~/.bashrc
-echo "# Custom Aliases" >> ~/.bashrc
-echo "# BASH" >> ~/.bashrc
-echo "alias eb=\"gedit ~/.bashrc\"" >> ~/.bashrc
-echo "alias sb=\"source ~/.bashrc\"" >> ~/.bashrc
-echo " " >> ~/.bashrc
-echo "# System"  >> ~/.bashrc
-echo "alias update=\"sudo apt update\"" >> ~/.bashrc
-echo "alias shutoff=\"(sleep 5 && shutdown now) &\"" >> ~/.bashrc
-echo " " >> ~/.bashrc
-echo "# Git" >> ~/.bashrc
-echo "alias gitf=\"git fetch origin; git status\"" >> ~/.bashrc
-echo " " >> ~/.bashrc
-echo "force_color_prompt=yes" >> ~/.bashrc
-
-source ~/.bashrc
 
 # Instalación Xclip para manejar el clipboard en el terminal
 echo "************************* INICIANDO INSTALACIÓN DE XCLIP *************************"
