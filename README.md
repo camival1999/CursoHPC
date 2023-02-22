@@ -1,9 +1,9 @@
-## Repositorio de prueba para Introducción a HPC 2023-1
+## Repositorio para el curso Introducción a HPC 2023-1
 ### Camilo Valencia
 ### C.C. 1016107945
 
 #### **Descripción**
-En este repositorio se guarda el trabajo de la semana 2, mostrando por un lado la creación de un repositorio remoto como se puede apreciar por los logs, así como un script (***instalacionExpress.sh***) que permite automatizar la tarea de instalar una serie de programas que requiero en Ubuntu y normalmente debo instalar manualmente cada uno varias veces en diferentes equipos con **Ubuntu 20.04**.
+En este repositorio se guarda el trabajo del curso mostrando como parte del trabajo de la semana 1 la creación de un repositorio remoto como se puede apreciar por los logs, así como un script de la semana 2 (***instalacionExpress.sh***) que permite automatizar la tarea de instalar una serie de programas que requiero en Ubuntu y normalmente debo instalar manualmente cada uno varias veces en diferentes equipos con **Ubuntu 20.04**.
 
 <br>
 NOTA: Navegar a la ubicación del script y correr mediante el comando:
