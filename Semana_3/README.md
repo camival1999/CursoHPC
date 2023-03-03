@@ -8,7 +8,7 @@ Trabajo principal de la semana: Repaso de C++ e introduccióna los *Makefile*.
 En el repaso de C++ se realizaron tareas sencillas de manejo de estructuras de datos como los arreglos y operaciones básicas sobre ellos, además de operaciones lógicas, aritméticas, condicionales y creación de funciones.
 
 **Ejecución:** Descargar `ValenciaCamilo_S3C1_repaso.cpp` o `ValenciaCamilo_S3C1_repaso_opcional.cpp`, Compilar y ejecutar mediante
-```
+```console
 g++ {Nombre del archivo deseado}.cpp -o {Nombre del archivo deseado}.exe
 ./{Nombre del archivo deseado}.exe
 ```
@@ -17,6 +17,6 @@ Respecto al Makefile se creó un script sencillo que permite tomar ciertos eleme
 
 **Ejecución:** Descargar archivos `ValenciaCamilo_S3C1.mk` junto a los previamente mencionados para ejecutar mediante el comando
 
-```
+```console
 make -f ValenciaCamilo_S3C1.mk
 ```

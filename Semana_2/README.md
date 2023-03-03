@@ -7,7 +7,7 @@ Trabajo principal de la semana: script ***instalacionExpress.sh*** que permite a
 
 
 **Ejecución:** Descargar el script mencionado y navegar a la ubicación de descarga. Correr mediante el comando:
-```
+```console
 ./instalacionExpress.sh
 ```
 Anteriormente se corría con el comando `sudo ./instalacionExpress.sh`  evitando que el bash pida autenticarse nuevamente de forma aleatoria en alguinas ocasiones, sin embargo por algún motivo esto causa que al editar el bashrc, se modifique el .bashrc del usuario root y por lo tanto no se guarden los cambios.

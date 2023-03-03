@@ -8,7 +8,7 @@ Trabajo principal de la semana: Script de manejo de datos del nevado del Tolima.
 Se busca crear un script (`ValenciaCamilo_S1C2CASA_Bash_Ejercicio4.sh`) que sea capaz de tomar ciertos datos previos (`datosTolima.dat`) y mediante comandos de BASH y awk darles el tratamiento necesario de forma automática con el fin de poderlos llevar a gráficas con un script de Python. 
 
 **Ejecución:** Descargar los archivos mencionados y correr el comando
-```
+```console
 ./ValenciaCamilo_S1C2CASA_Bash_Ejercicio4.sh
 ```
 
