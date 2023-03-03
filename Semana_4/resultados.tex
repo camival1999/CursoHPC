@@ -1,0 +1,49 @@
+\documentclass[11pt,letterpaper]{exam}
+\usepackage[utf8]{inputenc}
+%\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{float}
+%\decimalpoint
+
+\begin{document}
+\begin{center}
+{\Large Introducción a la Computaciuón Científica de Alto Rendimiento} \\
+S4C1 tarea - \textsc{Error numérico}\\
+03-2023\\
+Camilo Andres Valencia Acevedo\\
+cvalenciaa@unal.edu.co
+\end{center}
+
+
+\section{Explicación}
+En este trabajo se buscó obtener una aproximación a la derivada de la función $sin(x)$ por medio de dos métodos numéricos distintos empleando la definición de límite en ambos casos: en la figura \ref{fig:forward} por medio de pasos $h$ completos hacia adelante o \textit{Forward}, y en la figura \ref{fig:central} tomando medio paso hacia atrás y otro medio adelante o \textit{Central}.
+Tras ello se mostrará la convergencia de la aproximación numérica tipo \textit{Central} por medio de la figura \ref{fig:convergencia}.
+
+\noindent
+\section{Gr\'aficas}
+Aquí podemos apreciar los resultados de aplicar ambas técnicas:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=10cm]{err_derF.pdf} 
+    \caption{Error absoluto por el método Forward.}
+    \label{fig:forward}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=10cm]{err_derC.pdf} 
+    \caption{Error absoluto por el método Central.}
+    \label{fig:central}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=10cm]{err_der_h.pdf} 
+    \caption{Convergencia del valor de $Cos(x)$ según el tamaño de paso.}
+    \label{fig:convergencia}
+\end{figure}
+
+Es posible observar que de ambas aproximaciones numéricas, el método \textit{Central} es considerablemente mejor obteniendo un error constante muy bajo, mientras que el método de \textit{Forward} posee un alto porcentaje de error para valores alejados del 0, a pesar de tener un buen desempeño cercano a este.
+Adicionalmente respecto a la convergencia mostrada en la figura \ref{fig:convergencia}, podemos reafirmar nuevamente la eficacia del método \textit{Central}, pues incluso con un valor de paso tan elevado como es \textit{1}, es capaz de obtener una muy buena aproximación al valor real deseado, y rápidamente converge con error despreciable a este con un $h$ cercano a $0.1$
+
+\end{document}
