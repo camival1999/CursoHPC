@@ -1,27 +1,20 @@
 ## Repositorio para el curso Introducción a HPC 2023-1
-### Camilo Valencia
+### Camilo Andres Valencia Acevedo
 ### C.C. 1016107945
+### cvalenciaa@unal.edu.co
 
-#### **Descripción**
-En este repositorio se guarda el trabajo del curso mostrando como parte del trabajo de la semana 1 la creación de un repositorio remoto como se puede apreciar por los logs, así como un script de la semana 2 (***instalacionExpress.sh***) que permite automatizar la tarea de instalar una serie de programas que requiero en Ubuntu y normalmente debo instalar manualmente cada uno varias veces en diferentes equipos con **Ubuntu 20.04**.
+En este repositorio se guarda el trabajo del curso mostrando como parte del trabajo de la semana 1 la creación de un repositorio remoto como se puede apreciar por los logs y el historial de commits. Dentro de cada carpeta se encuentra una breve descripción del trabajo realizado en la semana, cuyo resumen es el siguiente:
+#### **Semana 1**
+- Creación del repositorio, manejo básico de Bash y tratamiento de datos con awk.
 
-<br>
-NOTA: Navegar a la ubicación del script y correr mediante el comando:
+#### **Semana 2**
+- continuación Bash, automatización de tareas: instalación y configuración de software en una nueva instalación de Ubuntu 20.04.
 
-> `./instalacionExpress.sh` 
+#### **Semana 3**
+- Repaso básico de C++ y Python, manejo básico de MakeFiles para automatización de procesos y actualización de datos automática.
 
-Anteriormente se corría con el comando `sudo ./instalacionExpress.sh`  evitando que el bash pida autenticarse nuevamente de forma aleatoria en alguinas ocasiones, sin embargo por algún motivo esto causa que al editar el bashrc, se modifique el .bashrc del usuario root y por lo tanto no se guarden los cambios.
+#### **Semana 4**
+- Continuación de C++ y Makefile. Introducción a algoritmos numéricos para aproximación de funciones: Derivada.
 
-La lista de programas que instala y tareas realizadas es:
-- ROS Noetic instalación completa
-- Visual Studio Code
-- Kitty y configura como terminal predeterminado
-- Catkin
-- Git
-- CopyQ
-- Tree
-- Locate
-- Xclip
-- Configuración de alternativas de Python
-- Modificación de Aliases en el archivo ~./bashrc
-- Creación de llave SSH para conectar git con Github
+#### **Semana 5**
+- TBA.
