@@ -1,6 +1,6 @@
 /*
   ******************************* 
-  Script de repaso opcional de C++
+  Algoritmos de aproximación numérica a la derivada de Sin(x). C++
   Desarrollado por Camilo Andres Valencia Acevedo para el curso de Intro. al HPC 2023-1 
   Semana 4, Clase 1 
   ******************************* 
@@ -8,9 +8,7 @@
 
 // Importamos librerías útiles
 #include <iostream>
-//#include <ctime>
 #include <cmath>
-//#include <vector>
 
 using namespace std;
 
@@ -65,6 +63,7 @@ int main(){
   double centralError[h1ArraySize];
   double hVector[iteraciones];
   double variacionH[iteraciones];
+  double errorH[iteraciones];
 
 // Inicializamos los vectores o arreglos para el eje T o H:
   for(int i = 0; i<h1ArraySize;i++){
@@ -90,18 +89,16 @@ int main(){
   }
 
 
-
 // Obtenemos el error al variar el valor de H
 for(int i = 0; i<iteraciones; i++){
-  //cout << "H: " << h2;
   pH = dyCentral(piTercios,hVector[i],1);
   variacionH[i] = *(pH);
-  //cout << " aprox: " << variacionH[i] << endl;
+  errorH[i] = (variacionH[i]-0.5)/0.5;
 }
 
   
 // Imprimimos los resultados
-  cout << "Forward" << "\t" << "Central" << "\t" << "Analytic" << "\t" << "vectorT" << "\t" << "ForwardError" << "\t" << "CentralError" << "\t" << "varH" << "\t" << "H" <<endl;
+  cout << "Forward" << "\t" << "Central" << "\t" << "Analytic" << "\t" << "vectorT" << "\t" << "ForwardError" << "\t" << "CentralError" << "\t" << "varH" << "\t" << "ErrorH" << "\t" << "H" <<endl;
   for(int i = 0; i<h1ArraySize;i++){
     cout << dyForwardArray[i] << "\t";
     cout << dyCentralArray[i] << "\t";
@@ -110,7 +107,7 @@ for(int i = 0; i<iteraciones; i++){
     cout << forwardError[i] << "\t";
     cout << centralError[i] << "\t";
     if (i<iteraciones){
-       cout << variacionH[i] << "\t" << hVector[i] << endl;}
+       cout << variacionH[i] << "\t" << errorH[i] << "\t" << hVector[i] << endl;}
     else{cout << endl;}
   }
 

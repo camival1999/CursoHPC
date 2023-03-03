@@ -8,8 +8,11 @@
 # Target:Condition
 # 	 Action if condition is newer than target
 
-resultados.pdf : resultados.tex err_derF.pdf err_derC.pdf err_der_h.pdf
-	pdflatex resultados.tex
+resultados.pdf : ValenciaCamilo_HPC_S4C1Casa.tex err_derF.pdf err_derC.pdf err_der_h.pdf
+	pdflatex ValenciaCamilo_HPC_S4C1Casa.tex
+	echo "Compilando otra vez para evitar errores de Cross-Referencing..."
+	pdflatex ValenciaCamilo_HPC_S4C1Casa.tex
+	latexmk -c
 
 err_derF.pdf :  ValenciaCamilo_HPC_S4C1Casa.py datosForward.dat datosCentral.dat datosH.dat
 	python3 ValenciaCamilo_HPC_S4C1Casa.py
@@ -28,7 +31,7 @@ datosCentral.dat : datos.dat
 	awk '{print $$2"\t"$$3"\t"$$6"\t"$$4}' datos.dat >> datosCentral.dat
 
 datosH.dat : datos.dat
-	awk 'NF!=6 {print $$7"\t"$$8}' datos.dat >> datosH.dat
+	awk 'NF!=6 {print $$7"\t"$$8"\t"$$9}' datos.dat >> datosH.dat
 
 
 datos.dat : ValenciaCamilo_HPC_S4C1Casa.exe
