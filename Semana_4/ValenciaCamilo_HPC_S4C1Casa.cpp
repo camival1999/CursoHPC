@@ -38,7 +38,7 @@ double *dyAnalytic(double arrT[],double h, int size){
 
 int main(){
 // Definimos variables para el cálculo de los intervalos.
-  double h1 = 0.01;
+  double h1 = 0.3;
   double lowerLimit = -M_PI_2+h1;
   double upperLimit = M_PI_2-h1;
   int h1ArraySize = (int)((upperLimit-lowerLimit)/h1)+1;
@@ -88,7 +88,6 @@ int main(){
     centralError[i] = (dyCentralArray[i]-dyAnalyticArray[i])/dyAnalyticArray[i];
   }
 
-
 // Obtenemos el error al variar el valor de H
 for(int i = 0; i<iteraciones; i++){
   pH = dyCentral(piTercios,hVector[i],1);
@@ -96,7 +95,6 @@ for(int i = 0; i<iteraciones; i++){
   errorH[i] = (variacionH[i]-0.5)/0.5;
 }
 
-  
 // Imprimimos los resultados
   cout << "Forward" << "\t" << "Central" << "\t" << "Analytic" << "\t" << "vectorT" << "\t" << "ForwardError" << "\t" << "CentralError" << "\t" << "varH" << "\t" << "ErrorH" << "\t" << "H" <<endl;
   for(int i = 0; i<h1ArraySize;i++){
