@@ -17,4 +17,7 @@ En este repositorio se guarda el trabajo del curso mostrando como parte del trab
 - Continuación de C++ y Makefile. Introducción a algoritmos numéricos para aproximación de funciones: Derivada.
 
 #### **Semana 5**
+- Manejo de librerías estándar en C++.
+
+#### **Semana 6**
 - TBA.
