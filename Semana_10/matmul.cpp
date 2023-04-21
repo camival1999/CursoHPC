@@ -32,20 +32,21 @@ void fill(std::vector<double> & mat);
 
 int main (int argc, char ** argv){
     bool repetitionsDefined = false;
-    if (argc < 3 || argc > 4) {
-        std::cerr << "Error. Usage: \n" << argv[0] << " M S R\n";
+    if (argc < 4 || argc > 5) {
+        std::cerr << "Error. Usage: \n" << argv[0] << " M S T R\n";
         std::cerr << "M: Matrix size\n";
         std::cerr << "S: Random generator seed\n";
+        std::cerr << "T: Is it a multithreaded run?. Default = 0 (No), 1(yes)\n";
         std::cerr << "R: (optional) Number of iterations. Default = 5\n";
         return 1;
     }
 
     const int M = std::stoi(argv[1]); // Matrix size
     const int S = std::stoi(argv[2]); // Seed
+    const int T = std::stoi(argv[3]); // Multithreaded? 1(yes) 0(no)
     int reps = 5;
-
-    if(argc == 4){ 
-        reps = std::stoi(argv[3]);
+    if(argc == 5){ 
+        reps = std::stoi(argv[4]); // Num of iterations for averages?
     }
     
     double eigenTime = 0.0;
@@ -55,12 +56,14 @@ int main (int argc, char ** argv){
 
     for(int i = 0; i < reps; i++){
         double auxEigen = multiply_eigen(M);
-        double auxSimple = multiply_simple(M);
-
         eigenTime += auxEigen;
         eigenTimeSq += (auxEigen*auxEigen);
+
+        if(T==0){
+        double auxSimple = multiply_simple(M);
         simpleTime += auxSimple;
         simpleTimeSq += (auxSimple*auxSimple);
+        }
     }
 
     double averageEigen = eigenTime/reps;
@@ -71,10 +74,12 @@ int main (int argc, char ** argv){
 
     std::cout.precision(15);
     //std::cout.setf(std::ios::scientific);
-    std::cout << M << "\t" << averageEigen << "\t" << stdEigen << "\t" << averageSimple << "\t" << stdSimple << "\n";
+    if(T==0){
+        std::cout << M << "\t" << averageEigen << "\t" << stdEigen << "\t" << averageSimple << "\t" << stdSimple << "\n";
+    }else{
+        std::cout << M << "\t" << averageEigen << "\t" << stdEigen << "\n";  
+    }
     //std::cout << M << "\t" << eigenTime << "\t" << averageEigen << "\t" << eigenTimeSq << "\t" << eigenTime*eigenTime << "\n";
-
-
     return 0;
 }
 
