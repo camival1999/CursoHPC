@@ -1,10 +1,12 @@
 #  ******************************* 
 #  Ejercicio de matmul NxN variable con threads
 #  Desarrollado por Camilo Andres Valencia Acevedo para el curso de Intro. al HPC 2023-1 
-#  Semana 10
+#  Semana 10-11
+#
+#  IMPORTANTE: la semilla en la ejecución de los programas matmul se puede modificar, se mantiene la misma (1) para comparar de manera más adecuada múltiples ejecuciones.
 #  ******************************* 
 
-#strong_scaling.pdf: size_data.dat
+#strong_scaling.pdf: size_data.dat  NOTA: No modificada, extraida de ejemplos online
 #	reset
 #	set terminal qt 1 noraise enhanced
 #	set xlabel "Matrix size (N)"
@@ -20,17 +22,18 @@
 #	unset terminal
 
 #weak_scaling.pdf: threads_data.dat
+#	Función para crear las imágenes a partir de los datos similar a Strong_scaling.pdf, ambas no testeadas.
 
 fig: thread_data.dat size_data.dat
 	@echo "Listo para plotear"
 	@rm *.out
 
 thread_data.dat: matmulConOptimizarThreads.out
-	for thread in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16; do echo "Num. threads: " $$thread; OMP_NUM_THREADS=$$thread ./matmulConOptimizarThreads.out 1000 1 1 2>/dev/null 1>>thread_data.dat; done
+	for thread in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16; do echo "Num. threads: " $$thread; OMP_NUM_THREADS=$$thread ./matmulConOptimizarThreads.out 4000 1 1 2>/dev/null 1>>thread_data.dat; done
 
 size_data.dat: matmulSinOptimizar.out matmulConOptimizar.out
-	for size1 in 10 50 100 200 500 1000; do echo "Running -O0. Matrix size: " $$size1; ./matmulSinOptimizar.out $$size1 1 0 2>/dev/null 1>>size_data.dat; done
-	for size2 in 10 50 100 200 500 1000; do echo "Running -O3. Matrix size: " $$size2; ./matmulConOptimizar.out $$size2 1 0 2>/dev/null 1>>size_data.dat; done
+	for size1 in 10 50 100 200 500 1000 2000 3000 4000; do echo "Running -O0. Matrix size: " $$size1; ./matmulSinOptimizar.out $$size1 1 0 2>/dev/null 1>>size_data.dat; done
+	for size2 in 10 50 100 200 500 1000 2000 3000 4000; do echo "Running -O3. Matrix size: " $$size2; ./matmulConOptimizar.out $$size2 1 0 2>/dev/null 1>>size_data.dat; done
 
 matmulSinOptimizar.out: matmul.cpp
 	g++ matmul.cpp -o matmulSinOptimizar.out -fsanitize=address,leak,undefined -O0

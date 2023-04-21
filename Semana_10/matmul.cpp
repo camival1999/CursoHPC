@@ -1,4 +1,5 @@
 /*
+Tareas que se deben hacer:
 En función del tamaño:
 N = 10,50,100,200,500,1000,2000,3000,4000.
 Matmul:Manual for loops y con eigen (2 implementaciones)
@@ -15,32 +16,43 @@ dividir los tiempos por el de eigen sin optimizar 1 thread e incluir este tiempo
 
 NOTA: Hacer promedio y desviación, Min 5 iteraciones por cada dato en ambos casos
 
+Compilación básica y ejecución:
 g++ matmul.cpp -o matmul.out -fsanitize=address,leak,undefined
-./matmul.out 100 1 2>/dev/null 1>size_data.dat
+./matmul.out $size $seed 0 2>/dev/null 1>size_data.dat
 
+#  ******************************* 
+#  Ejercicio de matmul NxN variable con y sin multithreading
+#  Desarrollado por Camilo Andres Valencia Acevedo para el curso de Intro. al HPC 2023-1 
+#  Semana 10-11
+#  ******************************* 
 */
 
+// Include necessary libraries.
 #include <eigen3/Eigen/Dense>
 #include <chrono>
 #include <iostream>
 #include <vector>
 #include <cstdlib>
 
+//Declare used functions, written at the end of the code provided by professor Oquendo
 double multiply_eigen(int size);
 double multiply_simple(int size);
 void fill(std::vector<double> & mat);
 
+
+//Main execution loop by Camilo Valencia
 int main (int argc, char ** argv){
-    bool repetitionsDefined = false;
+    //Checking the number of execution arguments in console, error if they are incorrect.
     if (argc < 4 || argc > 5) {
         std::cerr << "Error. Usage: \n" << argv[0] << " M S T R\n";
         std::cerr << "M: Matrix size\n";
         std::cerr << "S: Random generator seed\n";
-        std::cerr << "T: Is it a multithreaded run?. Default = 0 (No), 1(yes)\n";
-        std::cerr << "R: (optional) Number of iterations. Default = 5\n";
+        std::cerr << "T: Is it a multithreaded run? 0 (No), 1(yes)\n";
+        std::cerr << "R: (optional) Number of iterations for averages. Default = 5\n";
         return 1;
     }
 
+    //Saving provided arguments, checking if number of iterarions was defined and set if needed.
     const int M = std::stoi(argv[1]); // Matrix size
     const int S = std::stoi(argv[2]); // Seed
     const int T = std::stoi(argv[3]); // Multithreaded? 1(yes) 0(no)
@@ -49,16 +61,22 @@ int main (int argc, char ** argv){
         reps = std::stoi(argv[4]); // Num of iterations for averages?
     }
     
+    //Variable declaration
     double eigenTime = 0.0;
     double simpleTime = 0.0;
     double eigenTimeSq = 0.0;
     double simpleTimeSq = 0.0;
 
+    //Random seed generators set up, one for Eigen and the other for the manual simple algorithm
+    srand(S);
+    srand48(S);
+
+    //Execute Matrices multiplication algorithm 5 times or as many as were defined by the optional argument
     for(int i = 0; i < reps; i++){
         double auxEigen = multiply_eigen(M);
         eigenTime += auxEigen;
         eigenTimeSq += (auxEigen*auxEigen);
-
+        //If we are using multiple threads (T=1), we only want to run the eigen algorithm, otherwise run the simple algorithm too.
         if(T==0){
         double auxSimple = multiply_simple(M);
         simpleTime += auxSimple;
@@ -66,29 +84,26 @@ int main (int argc, char ** argv){
         }
     }
 
+    //Averages and std deviation calculations
     double averageEigen = eigenTime/reps;
     double averageSimple = simpleTime/reps;
 
-    double stdEigen = std::sqrt((eigenTimeSq - ((eigenTime*eigenTime)/reps))/reps);
+    double stdEigen = std::sqrt((eigenTimeSq - ((eigenTime*eigenTime)/reps))/reps); //Note: professor Oquendo's formula was incorrect, this is the correct summatory of the difference of squares
     double stdSimple = std::sqrt((simpleTimeSq - ((simpleTime*simpleTime)/reps))/reps);
 
+    // Set print precision for low time values and print the desired values as needed based on the T parameter. 
     std::cout.precision(15);
-    //std::cout.setf(std::ios::scientific);
     if(T==0){
         std::cout << M << "\t" << averageEigen << "\t" << stdEigen << "\t" << averageSimple << "\t" << stdSimple << "\n";
     }else{
         std::cout << M << "\t" << averageEigen << "\t" << stdEigen << "\n";  
     }
-    //std::cout << M << "\t" << eigenTime << "\t" << averageEigen << "\t" << eigenTimeSq << "\t" << eigenTime*eigenTime << "\n";
     return 0;
 }
 
 
-
+// Prof. Oquendo's functions, only change is the seed was taken into the main function.
 double multiply_eigen(int size){
-    // set the random number generator seed  CAMBIAR?
-    srand(1); 
-
     // create matrices
     Eigen::MatrixXd A = Eigen::MatrixXd::Random(size, size);
     Eigen::MatrixXd B = Eigen::MatrixXd::Random(size, size);
@@ -103,7 +118,7 @@ double multiply_eigen(int size){
     //Stop Chrono timer
     auto end = std::chrono::steady_clock::now();
 
-    std::clog << tmp << std::endl; // use the matrix to make eigen compute it, output to stde or 2> dev/null
+    std::clog << tmp << std::endl; // use the matrix to make eigen compute it, output to stde or 2> /dev/null
 
     //Calculate elapsed time
     std::chrono::duration<double> elapsed_seconds = end-start;
@@ -118,8 +133,6 @@ void fill(std::vector<double> & mat) {
 }
 
 double multiply_simple(int size){
-    srand48(1); // seed for the random number generator used
-
     // model the matrices as 1d arrays
     std::vector<double> A(size*size), B(size*size), C(size*size);
     fill(A); fill(B);
