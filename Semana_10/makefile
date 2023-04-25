@@ -6,27 +6,9 @@
 #  IMPORTANTE: la semilla en la ejecución de los programas matmul se puede modificar, se mantiene la misma (1) para comparar de manera más adecuada múltiples ejecuciones.
 #  ******************************* 
 
-#strong_scaling.pdf: size_data.dat  NOTA: No modificada, extraida de ejemplos online
-#	reset
-#	set terminal qt 1 noraise enhanced
-#	set xlabel "Matrix size (N)"
-#	set ylabel "Time (ms)"
-#	set title "Execution time of matrix multiplication with size N"
-#	plot 'size_data.dat' using 1:2 with lines title 'Size', \
-#	'size_data.dat' using 1:3 with lines dashtype 2 linecolor 7 \
-#	title 'Time'
-#	set terminal pdfcairo enhanced color notransparent
-#	set output 'vanderpol_pdfcairo.pdf'
-#	replot
-#	unset output
-#	unset terminal
-
-#weak_scaling.pdf: threads_data.dat
-#	Función para crear las imágenes a partir de los datos similar a Strong_scaling.pdf, ambas no testeadas.
-
-fig: thread_data.dat size_data.dat
+weak_scaling.pdf strong_scaling.pdf: thread_data.dat size_data.dat plot.py
 	@echo "Listo para plotear"
-	@rm *.out
+	python3 plot.py
 
 thread_data.dat: matmulConOptimizarThreads.out
 	for thread in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16; do echo "Num. threads: " $$thread; OMP_NUM_THREADS=$$thread ./matmulConOptimizarThreads.out 4000 1 1 2>/dev/null 1>>thread_data.dat; done

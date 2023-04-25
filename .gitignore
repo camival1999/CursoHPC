@@ -1,4 +1,6 @@
 .vscode
 */*.out
 *.dat
+!size_data.dat
+!thread_data.dat
 Semana_6/a.out
